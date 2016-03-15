@@ -1,0 +1,19 @@
+diff --git a/init.sony-platform.rc b/init.sony-platform.rc
+--- a/init.sony-platform.rc
++++ b/init.sony-platform.rc
+@@ -259,6 +259,7 @@ on early-boot
+ on boot
+     # SONY: Enable Sony RIC
+     mount securityfs securityfs /sys/kernel/security nosuid nodev noexec
++    write /sys/kernel/security/sony_ric/enable 0
+ 
+     # SONY: Native dumper via corepattern
+     write /proc/sys/kernel/core_pattern "|/system/bin/nativedumper -c %p %e %s %t"
+@@ -459,6 +460,7 @@ on property:init.svc.fuse_sdcard1=running
+ 
+ # Start RIC
+ service ric /sbin/ric
++    disabled
+     user root
+     group root drmrpc trimarea system
+     class main
